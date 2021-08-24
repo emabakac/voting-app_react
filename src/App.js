@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Header from "./components/Header/Header";
+import SportsList from "./components/Sports/SportsList";
+import VotingResults from "./components/Results/VotingResults";
+import { sportsData } from "./data/SportsData";
+import { sumVotes } from "./functions";
 
 function App() {
+
+  const [sports, setSports] = useState([sportsData])
+
+  const handleVotes = (sportId) => {
+    const updatedCount = sportsData.map((sport) => {
+      if (sport.id === sportId) {
+        return (sport.votes = sport.votes + 1);
+      } else {
+        return sport;
+      }
+    });
+    setSports(updatedCount);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <SportsList handleVotes={handleVotes} />
+      <VotingResults sumVotes={sumVotes} />
     </div>
   );
 }
