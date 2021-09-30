@@ -2,15 +2,17 @@ import React from "react";
 import { LinearProgress, Box, Typography } from "@material-ui/core";
 import useStyles from "./styles";
 
-export default function Result({ name, votes, sumVotes }) {
+export default function VotingResultComponent({
+  name,
+  percentage,
+  sum,
+  resultsReset,
+}) {
   const classes = useStyles();
-
-  const sum = sumVotes()
-  const percentage = (votes / sum) * 100;
 
   return (
     <div className={classes.resultItem}>
-      <Typography variant="body1" component="p" style={{ color: "white" }}>
+      <Typography variant="body1" component="p" color="textSecondary">
         {name}
       </Typography>
       <Box className={classes.box}>
@@ -18,11 +20,11 @@ export default function Result({ name, votes, sumVotes }) {
           <LinearProgress
             color="primary"
             variant="determinate"
-            value={percentage}
+            value={resultsReset ? 0 : percentage}
             className={classes.linearProgress}
           />
         </Box>
-        <Typography variant="body2" style={{ color: "white" }}>{`${(sum === 0
+        <Typography variant="body2" color="textSecondary">{`${(sum === 0
           ? 0
           : percentage
         ).toFixed(1)}%`}</Typography>

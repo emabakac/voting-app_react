@@ -1,11 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export default makeStyles({
+export default makeStyles((theme) => ({
   resultItem: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    margin: "5px 0",
+    margin: theme.spacing(0.5, 0),
   },
   box: {
     display: "flex",
@@ -13,11 +13,11 @@ export default makeStyles({
   },
   linearProgressContainer: {
     width: "100%",
-    margin: "0 16px",
+    margin: theme.spacing(0, 2),
   },
   linearProgress: {
-    width: "400px",
-    height: "15px",
-    borderRadius: "5px",
+    width: theme.spacing(50),
+    height: theme.spacing(2),
+    borderRadius: theme.spacing(0.5),
   },
-});
+}));
